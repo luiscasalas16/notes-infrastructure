@@ -1,13 +1,6 @@
 # notes-infrastructure / vmware
 
-- [Artículos](#artículos)
 - [Comandos](#comandos)
-
----
-
-## Artículos
-
-- [xyz](https://xyz)
 
 ---
 

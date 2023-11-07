@@ -23,7 +23,7 @@
   - [Upload a Virtual Disk to Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/windows/disks-upload-vhd-to-managed-disk-powershell)
   - [Create a Virtual Machine from a Virtual Disk](https://learn.microsoft.com/en-us/azure/virtual-machines/attach-os-disk)
 
-- ajustar tamaño de disco
+- 1. ajustar tamaño de disco de máquina virtual
 
 ```powershell
 #montar el disco
@@ -46,7 +46,7 @@ Dismount-VHD -Path "<disco>.vhdx"
 Get-VHD -Path "<disco>.vhdx"
 ```
 
-- ajustar máquina, iniciar máquina en hyperv, ejecutar un powershell como administrador
+- 2. ajustar máquina virtual en hyperv, ejecutar powershell como administrador
 
 ```powershell
 #Run Windows System File Checker
@@ -132,47 +132,20 @@ winmgmt.exe /verifyrepository
 #https://go.microsoft.com/fwlink/?LinkID=394789
 ```
 
-- subir disco a Azure
+- 3. subir disco de máquina virtual en hyperv a azure
 
 ```powershell
-Connect-AzAccount
-Get-AzSubscription
-Set-AzContext -Subscription "bda9e7e5-52c1-4662-891e-980ff604a990"
-
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\1PROCD.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROCD_ -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\2PROAPL.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROAPL -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\3PROBD.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROBD -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\3PROBD-backup.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROBD_backup -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\3PROBD-data.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROBD_data -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\3PROBD-log.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROBD_log -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\4PROETL.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROETL -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\5PRORPT.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PRORPT -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\6PROBDSYBASE.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PROBDSYBASE -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V1
-Add-AzVhd -Verbose -LocalFilePath "D:\ambiente fw\7PRODES.vhdx" -ResourceGroupName framework-ambiente-2022 -Location eastus2 -DiskName 2022_Disk_PRODES -Zone 1 -DiskSku StandardSSD_LRS -DiskOsType Windows -DiskHyperVGeneration V2
-
+# Generación 1
+Add-AzVhd -Verbose -LocalFilePath "C:\...\virtual machine.vhdx" -ResourceGroupName "lcs16-rg" -Location "eastus" -DiskName "virtual_machine_disk" -Zone 1 -DiskSku "StandardSSD_LRS" -DiskOsType "Windows" -DiskHyperVGeneration "V1"
+# Generación 2
+Add-AzVhd -Verbose -LocalFilePath "C:\...\virtual machine.vhdx" -ResourceGroupName "lcs16-rg" -Location "eastus" -DiskName "virtual_machine_disk" -Zone 1 -DiskSku "StandardSSD_LRS" -DiskOsType "Windows" -DiskHyperVGeneration "V2"
 ```
 
+- 4. hacer máquina virtual en azure utilizando disco en portal
+
+- 5. ajustar máquina virtual en azure, ejecutar powershell como administrador
+
 ```powershell
-/#Put the page file on the temporal drive volume
+#Put the page file on the temporal drive volume
 Set-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management' -Name PagingFiles -Value 'D:\pagefile.sys' -Type MultiString -Force
-
-2022-framework-nsg
-2022-framework-vnet
-2022-framework-vnet-azure
-
-2022-framework-vm-procd
-
-
-$managedDisk= Get-AzDisk -ResourceGroupName "framework-ambiente-2022" -DiskName "2022_Disk_PROCD_"
-
-$diskConfig = New-AzDiskConfig -SourceResourceId $managedDisk.Id -Location $managedDisk.Location -CreateOption Copy
-
-New-AzDisk -Disk $diskConfig -DiskName "2022_Disk_PROCD" -ResourceGroupName "framework-ambiente-2022"
-
-az vm update --resource-group "framework-ambiente-2022" --name "2022-framework-vm-procd" --set osProfile.windowsConfiguration.enableAutomaticUpdates=false osProfile.windowsConfiguration.patchSettings.patchMode=Manual
-
-$VirtualMachine = Get-AzVM -ResourceGroupName "framework-ambiente-2022" -Name "2022-framework-vm-procd"
-Set-AzVMOperatingSystem -VM $VirtualMachine -PatchMode "Manual"
-Update-AzVM -VM $VirtualMachine
-
 ```
