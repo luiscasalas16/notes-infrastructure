@@ -28,6 +28,10 @@ Habilitar o deshabilitar menú contextual de "show more options".
 
 Personalizar el comportamiento de las vistas de archivos en el Windows Explorer. <https://lesferch.github.io/WinSetView>
 
+![image](https://github.com/user-attachments/assets/aca1780d-2f18-4429-be47-d214a2cb9c9b)
+
+![image](https://github.com/user-attachments/assets/1c6fd6a1-98a5-4836-bfed-e7de3b32bc88)
+
 ## Enable or Disable Hyper-V
 
 - Disable
