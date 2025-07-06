@@ -26,6 +26,10 @@ Personalizar el comportamiento de las vistas de archivos en el Windows Explorer.
 
 ![image](https://github.com/user-attachments/assets/1c6fd6a1-98a5-4836-bfed-e7de3b32bc88)
 
+## Custom Taskbar
+
+Personalizar barra de tareas. <https://github.com/valinet/ExplorerPatcher>
+
 ## Enable or Disable Hyper-V
 
 - Disable
