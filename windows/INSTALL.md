@@ -15,8 +15,10 @@ Para instalar sin cuenta de correo:
 - cambiar power plan
 - cambiar task bar
 - cambiar dark mode
-- cambiar transparency effects
 - cambiar background
+- deshailitar transparency effects
+- deshailitar animation effects
+- cambiar performance options
 
 ## Paso 3
 
@@ -32,19 +34,22 @@ Para instalar sin cuenta de correo:
 ```powershell
 # install chocolatey
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
 
+```powershell
 # brave
 choco install brave -y
 # lightshot
 choco install lightshot -y
 # paint.net
 choco install paint.net -y
-
 # drawio
 choco install drawio -y
 # notepad++
 choco install notepadplusplus -y
+```
 
+```powershell
 # powershell
 choco install powershell-core -y
 # git
@@ -53,6 +58,9 @@ choco install git -y
 choco install azure-cli -y
 # postman
 choco install postman -y
+```
+
+```powershell
 # node
 choco install nodejs --version="20.18.2" -y
 # angular
