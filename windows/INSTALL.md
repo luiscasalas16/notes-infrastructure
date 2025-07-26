@@ -47,11 +47,11 @@ choco install paint.net -y
 choco install drawio -y
 # notepad++
 choco install notepadplusplus -y
+# powershell
+choco install powershell-core -y
 ```
 
 ```powershell
-# powershell
-choco install powershell-core -y
 # git
 choco install git -y
 # azure-cli
