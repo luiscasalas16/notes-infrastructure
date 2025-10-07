@@ -37,27 +37,24 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ```
 
 ```powershell
-# brave
 choco install brave -y
-# lightshot
+choco install adobereader -y
 choco install lightshot -y
-# paint.net
 choco install paint.net -y
-# drawio
 choco install drawio -y
-# notepad++
 choco install notepadplusplus -y
-# powershell
 choco install powershell-core -y
+choco install lockhunter -y
+choco install notion -y
 ```
 
 ```powershell
-# git
 choco install git -y
-# azure-cli
 choco install azure-cli -y
-# postman
 choco install postman -y
+}choco install dbeaver -y
+choco install sql-server-management-studio -y --version=20.2.37
+choco install vscode -y
 ```
 
 ```powershell
