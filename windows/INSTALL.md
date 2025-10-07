@@ -52,7 +52,7 @@ choco install notion -y
 choco install git -y
 choco install azure-cli -y
 choco install postman -y
-}choco install dbeaver -y
+choco install dbeaver -y
 choco install sql-server-management-studio -y --version=20.2.37
 choco install vscode -y
 ```
