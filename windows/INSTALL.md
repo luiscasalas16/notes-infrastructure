@@ -55,12 +55,7 @@ choco install postman -y
 choco install dbeaver -y
 choco install sql-server-management-studio -y --version=20.2.37
 choco install vscode -y
-```
-
-```powershell
-# node
 choco install nodejs --version="20.18.2" -y
-# angular
 npm install -g @angular/cli@18.2.0
 ```
 
