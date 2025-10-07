@@ -46,6 +46,8 @@ choco install notepadplusplus -y
 choco install powershell-core -y
 choco install lockhunter -y
 choco install notion -y
+choco install telegram -y
+choco install vlc -y
 ```
 
 ```powershell
