@@ -1,24 +1,37 @@
 # notes-infrastructure / windows
 
-## Allow store credentials on remote desktop.
+## Configuraciones de Windows
+
+### Enable or Disable Hyper-V
+
+```powershell
+#Disable
+cmd.exe /c 'bcdedit /set hypervisorlaunchtype off'
+```
+
+```powershell
+#Enable
+cmd.exe /c 'bcdedit /set hypervisorlaunchtype auto'
+```
+
+### Allow store credentials on remote desktop.
 
 ```powershell
 New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\LSA" -Name "LsaCfgFlags" -PropertyType "DWORD" -Value 0 -Force
 ```
 
-## Disable show more options context menu
+## Personalizaciones Básicas de Windows
 
-```shell
-reg add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /ve /d "" /f
-```
+- display -> dark mode
+- windows explorer -> show -> file name extensions
+- windows explorer -> options -> general -> privacy -> clear
+- windows explorer -> options -> view -> expand to open folder
 
-## Disable show recommended files in start, recent files in file Explorer, and items in jump lists
+## Peronalizaciones Avanzadas de Windows
 
-```shell
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoRecentDocsHistory /t REG_DWORD /d 1 /f
-```
+Personalizar barra de tareas. <https://github.com/valinet/ExplorerPatcher>
 
-## Custom Folders View
+### Custom Folders View
 
 Personalizar el comportamiento de las vistas de archivos en el Windows Explorer. <https://lesferch.github.io/WinSetView>
 
@@ -26,27 +39,25 @@ Personalizar el comportamiento de las vistas de archivos en el Windows Explorer.
 
 ![image](https://github.com/user-attachments/assets/1c6fd6a1-98a5-4836-bfed-e7de3b32bc88)
 
-## Custom Taskbar
+### Disable show more options context menu
 
-Personalizar barra de tareas. <https://github.com/valinet/ExplorerPatcher>
+```shell
+reg add HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32 /ve /d "" /f
+```
 
-## Enable or Disable Hyper-V
+### Disable show recommended files in start, recent files in file Explorer, and items in jump lists
 
-- Disable
+```shell
+reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer" /v NoRecentDocsHistory /t REG_DWORD /d 1 /f
+```
 
-  ```powershell
-  cmd.exe /c 'bcdedit /set hypervisorlaunchtype off'
-  ```
+### Disable Zip Folders
 
-- Enable
-
-  ```powershell
-  cmd.exe /c 'bcdedit /set hypervisorlaunchtype auto'
-  ```
-
-## Configuraciones de Windows
-
-- display -> dark mode
-- windows explorer -> show -> file name extensions
-- windows explorer -> options -> general -> privacy -> clear
-- windows explorer -> options -> view -> expand to open folder
+```powershell
+#Disable ZIP Folders
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\CompressedFolder\CLSID' -Recurse -Force
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.zip\CLSID' -Recurse -Force
+#Disable CAB Folders
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\CLSID' -Recurse -Force
+Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.cab\CLSID' -Recurse -Force
+```
