@@ -14,7 +14,7 @@ cmd.exe /c 'bcdedit /set hypervisorlaunchtype off'
 cmd.exe /c 'bcdedit /set hypervisorlaunchtype auto'
 ```
 
-### Allow store credentials on remote desktop.
+### Allow store credentials on remote desktop
 
 ```powershell
 New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\LSA" -Name "LsaCfgFlags" -PropertyType "DWORD" -Value 0 -Force
@@ -26,6 +26,7 @@ New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\LSA" -Name "LsaCf
 - windows explorer -> show -> file name extensions
 - windows explorer -> options -> general -> privacy -> clear
 - windows explorer -> options -> view -> expand to open folder
+- windows explorer -> options -> view -> show this pc
 
 ## Peronalizaciones Avanzadas de Windows
 
