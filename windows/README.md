@@ -2,24 +2,6 @@
 
 ## Configuraciones de Windows
 
-### Enable or Disable Hyper-V
-
-```powershell
-#Disable
-cmd.exe /c 'bcdedit /set hypervisorlaunchtype off'
-```
-
-```powershell
-#Enable
-cmd.exe /c 'bcdedit /set hypervisorlaunchtype auto'
-```
-
-### Allow store credentials on remote desktop
-
-```powershell
-New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\LSA" -Name "LsaCfgFlags" -PropertyType "DWORD" -Value 0 -Force
-```
-
 ## Personalizaciones Básicas de Windows
 
 - display -> dark mode
@@ -61,4 +43,10 @@ Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.zip\CLSID
 #Disable CAB Folders
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\CABFolder\CLSID' -Recurse -Force
 Remove-Item -Path 'Registry::HKEY_CLASSES_ROOT\SystemFileAssociations\.cab\CLSID' -Recurse -Force
+```
+
+### Allow store credentials on remote desktop
+
+```powershell
+New-ItemProperty -Path "HKLM:\System\CurrentControlSet\Control\LSA" -Name "LsaCfgFlags" -PropertyType "DWORD" -Value 0 -Force
 ```
