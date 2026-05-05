@@ -2,15 +2,7 @@
 
 ## Configuraciones de Windows
 
-## Personalizaciones Básicas de Windows
-
-- display -> dark mode
-- windows explorer -> show -> file name extensions
-- windows explorer -> options -> general -> privacy -> clear
-- windows explorer -> options -> view -> expand to open folder
-- windows explorer -> options -> view -> show this pc
-
-## Peronalizaciones Avanzadas de Windows
+### Custom Task Bar
 
 Personalizar barra de tareas. <https://github.com/valinet/ExplorerPatcher>
 

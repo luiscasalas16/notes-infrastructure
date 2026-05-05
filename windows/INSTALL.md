@@ -2,27 +2,25 @@
 
 ## Paso 1
 
-Para instalar sin cuenta de correo:
-
-- desconectar red
-- shift + f10
-- oobe\bypassnro
+Bypass all Windows 11 requeriments: [https://www.starwindsoftware.com/blog/bypass-tpm-and-install-windows-11-on-unsupported-hardware/]
 
 ## Paso 2
 
-- activar windows
-- cambiar computer name
-- cambiar power plan
-- cambiar task bar
-- cambiar dark mode
-- cambiar background
-- deshailitar transparency effects
-- deshailitar animation effects
-- cambiar performance options
+- ejecutar windows update
 
 ## Paso 3
 
-- ejecutar windows update
+- activar windows
+- ajustar power options, high performance, turn off the display
+- ajustar task bar
+- ajustar languajes (english, méxico) y keyboard (us y latin america)
+- ajustar mode dark, transparency effects, animation effects, background
+- ajustar performance options
+- ajustar windows explorer
+  - show -> file name extensions
+  - options -> general -> privacy -> clear
+  - options -> view -> expand to open folder
+  - options -> view -> show this pc
 
 ## Paso 4
 
@@ -32,26 +30,33 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 ```
 
 ```powershell
+# dev software
 choco install adobereader -y
-choco install brave -y
-choco install drawio -y
-choco install lightshot -y
-choco install lockhunter -y
-choco install notepadplusplus -y
-choco install notion -y
-choco install paint.net -y
-choco install powershell-core -y
-choco install spotify -y
-choco install telegram -y
-choco install vlc -y
-```
-
-```powershell
 choco install azure-cli -y
 choco install dbeaver -y
 choco install git -y
 choco install postman -y
 choco install vscode -y
-choco install nodejs --version="20.18.2" -y
-npm install -g @angular/cli@18.2.0
+choco install drawio -y
+choco install notepadplusplus -y
+choco install paint.net -y
+choco install powershell-core -y
+choco install winmerge -y
+choco install winrar -y
+choco install lightshot -y
+choco install lockhunter -y
+
+# power desginer
+# firma digital
+
+Install-Module -Name Az -Repository PSGallery -Force
+```
+
+```powershell
+# admin software
+choco install brave -y
+choco install notion -y
+choco install spotify -y
+choco install telegram -y
+choco install vlc -y
 ```
