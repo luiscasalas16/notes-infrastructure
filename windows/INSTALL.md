@@ -45,10 +45,10 @@ choco install winmerge -y
 choco install winrar -y
 choco install lightshot -y
 choco install lockhunter -y
-
+choco install nodejs --version="24.15.0" -y
+npm install -g @angular/cli@21.2.6
 # power desginer
 # firma digital
-
 Install-Module -Name Az -Repository PSGallery -Force
 ```
 
